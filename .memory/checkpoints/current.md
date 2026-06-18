@@ -4,44 +4,48 @@ type: checkpoint
 status: active
 actor: Claude
 updated: 2026-06-18
-episode: define-session-memory
+episode: define-consensus-and-actor
 ---
 
 # Current Checkpoint
 
 ## Focus
 
-Add short-term session memory to Chronelle as the Checkpoint working-memory unit.
+Extend the Chronelle ontology for a mixed human-agent org: session memory, then
+consensus and participants.
 
 ## Progress
 
-- Decided to model session memory as a Checkpoint in a distinct working-memory
-  layer, not as a durable primitive or a projection.
-- Defined `ontology/checkpoint.md` and restructured `ontology/README.md` into
-  layers.
-- Recorded the decision, the `define-session-memory` episode, and its
-  transitions.
-- Created this checkpoint as the first instance.
+- Added the Checkpoint working-memory unit and aifund's first checkpoint.
+- Decided consensus is a projection (not a primitive) over Actors' accept/reject
+  Transitions, with requirements as Constraints.
+- Elevated Actor to a first-class durable primitive.
+- Defined `ontology/actor.md` and `projections/consensus.md`, indexed both, and
+  recorded the decisions, episode, transitions, and an example Constraint.
 
 ## Next Action
 
-Decide whether to apply Checkpoint to AIfund by promoting `SESSION_HANDOFF.md`
-into `aifund/.memory/checkpoints/current.md`.
+Decide whether to define the concurrency model for multi-actor work: per-track
+Checkpoint naming and the conflict model for concurrent Transitions and contested
+consensus.
 
 ## Open Loops
 
-- Multi-actor, multi-track concurrency model for Checkpoints is deferred.
-- Whether closed Checkpoints are archived or deleted after promotion is open.
+- Multi-threaded checkpoints and the concurrent-Transition conflict model are
+  still deferred (related to contested consensus).
+- Consensus quorum defaults absent a Constraint are intentionally minimal; may
+  need tightening.
+- Agent-Actor identity vs model version over time is open.
 
 ## Working Context
 
-- `ontology/checkpoint.md`
-- `ontology/README.md`
-- `.memory/decisions/checkpoint-working-memory.md`
-- prior art: `aifund/SESSION_HANDOFF.md`
+- `ontology/actor.md`, `ontology/README.md`
+- `projections/consensus.md`, `projections/README.md`
+- `.memory/decisions/consensus-as-projection.md`, `actor-first-class.md`
+- `.memory/constraints/ontology-change-consensus.md`
 
 ## Promotion Notes
 
-When this session closes, no further durable memory is pending: the decision,
-episode, and transitions are already written. This checkpoint can then be cleared
-or set to `closed`.
+Durable residue for this session is already written (decisions, episode,
+transitions). This checkpoint can move to `closed` once consensus and Actor are
+committed.

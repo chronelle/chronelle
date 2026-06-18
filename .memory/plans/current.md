@@ -72,6 +72,19 @@ This plan is a projection over Chronelle project memory.
 
 ## Done
 
+### Define consensus and Actor
+
+- id: define-consensus-and-actor
+- status: done
+- why: A mixed human-agent org needs to represent agreement among participants,
+  and consensus needs a defined set of members.
+- related memory:
+  - decision: actor-first-class
+  - decision: consensus-as-projection
+  - episode: define-consensus-and-actor
+  - projection: consensus
+  - ontology: actor
+
 ### Define session memory
 
 - id: define-session-memory

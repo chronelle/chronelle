@@ -6,12 +6,16 @@ Chronelle primitives fall into layers.
 
 Long-term organizational memory. Append-only.
 
+- Actor
 - Goal
 - Constraint
 - Assumption
 - Question
 - Alternative
 - Decision
+
+Actor represents a participant in the organization, human or agent. See
+[Actor](actor.md).
 
 ## Temporal Primitives
 
