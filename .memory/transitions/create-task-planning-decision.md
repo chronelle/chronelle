@@ -26,5 +26,5 @@ Chronelle records that task planning begins as a projection over project memory.
 
 ## Evidence
 
-- `projects/chronelle/decisions/use-task-planning-projection.md`
+- `.memory/decisions/use-task-planning-projection.md`
 - `projections/task-planning.md`

@@ -28,4 +28,4 @@ actions derived from project memory.
 ## Evidence
 
 - `projections/task-planning.md`
-- `projects/chronelle/plans/current.md`
+- `.memory/plans/current.md`

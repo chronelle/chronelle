@@ -27,4 +27,4 @@ Chronelle has an active current plan with active, proposed, and done work.
 
 ## Evidence
 
-- `projects/chronelle/plans/current.md`
+- `.memory/plans/current.md`

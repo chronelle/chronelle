@@ -28,5 +28,5 @@ Decision.
 
 ## Evidence
 
-- `projects/chronelle/decisions/episode-transition-primitives.md`
-- `projects/chronelle/episodes/define-episode-transition-primitives.md`
+- `.memory/decisions/episode-transition-primitives.md`
+- `.memory/episodes/define-episode-transition-primitives.md`
