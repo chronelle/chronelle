@@ -25,6 +25,30 @@ This plan is a projection over Chronelle project memory.
 
 ## Proposed
 
+### Support multi-threaded checkpoints
+
+- id: support-multi-threaded-checkpoints
+- status: proposed
+- why: Multiple actors can work on a project at once, so a project may have more
+  than one active Checkpoint, and they need naming, discovery, and reconciliation.
+- next action: Design per-track Checkpoint naming under `.memory/checkpoints/` and
+  a concurrency model, related to the open question on concurrent Transitions.
+- related memory:
+  - decision: checkpoint-working-memory
+  - ontology: checkpoint
+
+### Apply checkpoints to AIfund
+
+- id: apply-checkpoints-to-aifund
+- status: proposed
+- why: AIfund already keeps an informal `SESSION_HANDOFF.md`, which is exactly a
+  Checkpoint and should adopt the formal shape.
+- next action: Promote `aifund/SESSION_HANDOFF.md` into
+  `aifund/.memory/checkpoints/current.md`.
+- related memory:
+  - decision: checkpoint-working-memory
+  - ontology: checkpoint
+
 ### Define task planning conventions
 
 - id: define-task-planning-conventions
@@ -47,6 +71,17 @@ This plan is a projection over Chronelle project memory.
   - AGENTS.md
 
 ## Done
+
+### Define session memory
+
+- id: define-session-memory
+- status: done
+- why: Chronelle's primitives were all long-term; agents needed short-term memory
+  to resume work in progress.
+- related memory:
+  - ontology: checkpoint
+  - decision: checkpoint-working-memory
+  - episode: define-session-memory
 
 ### Define Episode and Transition primitives
 
