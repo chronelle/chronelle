@@ -10,12 +10,17 @@ Long-term organizational memory. Append-only.
 - Goal
 - Constraint
 - Assumption
-- Question
+- Claim
 - Alternative
 - Decision
 
 Actor represents a participant in the organization, human or agent. See
 [Actor](actor.md).
+
+Claim is a truth-apt proposition the organization tracks, with status
+`unsettled`, `settled`, or `refuted`. See [Claim](claim.md). It replaces the
+former Question primitive, whose empirical half is an `unsettled` Claim and whose
+deliberative half is an unaccepted Decision.
 
 ## Temporal Primitives
 

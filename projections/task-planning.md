@@ -5,7 +5,7 @@ Task Planning is a projection over project memory.
 It is not a new ontology primitive yet.
 
 A task is a proposed next action derived from Goals, Constraints, Assumptions,
-Questions, Alternatives, Decisions, Episodes, and Transitions.
+Claims, Alternatives, Decisions, Episodes, and Transitions.
 
 ## Task Record
 
@@ -31,7 +31,7 @@ A task record should include:
 
 Tasks should be grounded in project memory.
 
-Every active task should point to the Goal, Question, Decision, Episode, or
+Every active task should point to the Goal, Claim, Decision, Episode, or
 Transition that makes it relevant.
 
 When a task changes project state, record the work as an Episode and record the

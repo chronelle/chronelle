@@ -26,7 +26,7 @@ An Episode records:
 - end time, if known
 - participants
 - related project
-- related Goals, Constraints, Assumptions, Questions, Alternatives, and Decisions
+- related Goals, Constraints, Assumptions, Claims, Alternatives, and Decisions
 - inputs
 - outputs
 - Transitions produced or observed
@@ -63,9 +63,15 @@ Initial operations:
 - accept
 - reject
 - supersede
-- resolve
+- settle
+- refute
 - reopen
 - archive
+
+`settle` and `refute` move a Claim to `settled` or `refuted`; `settle` is the act
+of discovery. `reopen` returns a settled or refuted Claim to `unsettled`, or
+returns an accepted Decision to open. The former `resolve` operation is dropped
+with the Question primitive.
 
 A Transition should be small enough that its rationale is clear. If one activity
 changes several primitives for different reasons, model those changes as several
@@ -79,7 +85,8 @@ Constraint describes a boundary on possible action.
 
 Assumption describes a belief being relied upon.
 
-Question describes an unresolved inquiry.
+Claim describes a proposition whose truth is tracked, settled by evidence. An
+`unsettled` Claim is an empirical inquiry; settling one is discovery.
 
 Alternative describes an option under consideration.
 
@@ -119,11 +126,11 @@ Episode:
 
 Transitions:
 
-- create Question: What unit represents meaningful organizational activity?
+- create Decision (proposed): What unit represents meaningful organizational activity?
 - create Alternative: Use Episode as the activity primitive.
 - create Alternative: Use raw event-sourcing events as the activity primitive.
 - accept Alternative: Use Episode as the activity primitive.
-- create Decision: Model activity as Episodes and state change as Transitions.
+- accept Decision: Model activity as Episodes and state change as Transitions.
 
 ### Revising a Goal
 
@@ -138,7 +145,7 @@ Transitions:
 
 - revise Goal `validate-shared-memory`
 - create Assumption that shared memory is most valuable in long-horizon work
-- resolve Question about whether short tasks need persistent memory
+- settle Claim that short tasks rarely need persistent memory
 
 ### Superseding a Decision
 

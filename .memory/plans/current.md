@@ -9,6 +9,23 @@ projection: task-planning
 
 This plan is a projection over Chronelle project memory.
 
+## Done
+
+### Refactor proposition primitives
+
+- id: refactor-proposition-primitives
+- status: done
+- why: The truth-apt side of the ontology had no home, and Question was doing two
+  jobs. Added Claim, removed Question, kept Assumption distinct for now.
+- related memory:
+  - claim: question-conflates-two-jobs
+  - claim: proposition-is-durable-unit
+  - decision: add-claim-primitive
+  - decision: remove-question-primitive
+  - decision: defer-assumption-fold
+  - episode: refactor-proposition-primitives
+  - ontology: claim
+
 ## Active
 
 ### Define project memory templates
