@@ -28,10 +28,26 @@ This plan is a projection over Chronelle project memory.
 
 ## Active
 
+### Build local agent service MVP
+
+- id: build-local-agent-service-mvp
+- status: active
+- why: Chronelle's first-customer goal is to speed up development of other
+  projects by preserving continuity across AI work sessions.
+- next action: Choose the local agent implementation plan, then implement the
+  first `chronelle-agent` workflow.
+- related memory:
+  - goal: speed-up-other-project-development
+  - decision: mvp-agent-service-vs-cli-tool
+  - decision: local-agent-implementation-plan
+  - episode: define-mvp-agent-service-strategy
+
+## Proposed
+
 ### Define project memory templates
 
 - id: define-project-memory-templates
-- status: active
+- status: proposed
 - why: Future Chronelle work needs repeatable file shapes for Episodes,
   Transitions, and plans.
 - next action: Add templates for Episode and Transition records.
@@ -39,8 +55,6 @@ This plan is a projection over Chronelle project memory.
   - decision: episode-transition-primitives
   - episode: define-episode-transition-primitives
   - projection: task-planning
-
-## Proposed
 
 ### Support multi-threaded checkpoints
 
