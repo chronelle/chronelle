@@ -38,3 +38,22 @@ variants** (Goal, Constraint, Decision, Alternative) and continues using them.
 - Hybrid: `Commitment` as a base type with named variants as legible specializations.
 
 When decided, resolve with an `accept` Transition recording the chosen resolution.
+
+## Current Lean
+
+The user is increasingly interested in simplifying Chronelle's durable
+primitives to **Claim** and **Commitment**.
+
+The attraction is that Claim and Commitment may express the core distinction more
+cleanly:
+
+- Claim tracks what the organization believes or is trying to settle.
+- Commitment tracks what the organization wants, requires, chooses, proposes, or
+  intends to maintain.
+
+This would reduce the ontology's primitive count while preserving the ability to
+project legible views such as Goals, Constraints, Decisions, and Alternatives.
+
+The decision remains open because Chronelle still needs to prove that the named
+views remain legible and operationally useful if they become views over
+Commitment rather than first-class primitives.
