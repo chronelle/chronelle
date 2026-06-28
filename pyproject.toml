@@ -9,3 +9,6 @@ description = "Persistent organizational state layer for AI-native organizations
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = []
+
+[project.scripts]
+chronelle-agent = "chronelle.cli:main"

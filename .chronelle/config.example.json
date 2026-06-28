@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "orgs": {
+    "personal": {
+      "name": "Personal",
+      "default_actor": "lxjuly",
+      "projects": {
+        "chronelle": {
+          "path": "..",
+          "memory_path": "../.memory",
+          "approval_policy": "explicit"
+        },
+        "aifund": {
+          "path": "../../aifund",
+          "memory_path": "../../aifund/.memory",
+          "approval_policy": "explicit"
+        }
+      }
+    }
+  }
+}

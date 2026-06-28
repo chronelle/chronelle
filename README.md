@@ -71,3 +71,43 @@ Writes staged proposal files into `.memory/` and clears the in-process proposal.
 ```sh
 PYTHONPATH=src python3 -m unittest discover -s tests
 ```
+
+## Local Agent Service
+
+Chronelle can run as a local HTTP agent service:
+
+```sh
+PYTHONPATH=src python3 -m chronelle.cli run --config .chronelle/config.example.json
+```
+
+By default it listens on `127.0.0.1:8765`.
+
+```http
+GET  /health
+GET  /version
+GET  /orgs/{org}/projects/{project}/context?task=...
+POST /orgs/{org}/projects/{project}/ingest
+GET  /orgs/{org}/projects/{project}/diff
+POST /orgs/{org}/projects/{project}/commit
+```
+
+The first automatic observation source is explicit transcript ingestion:
+
+```sh
+curl -s http://127.0.0.1:8765/orgs/personal/projects/aifund/ingest \
+  -H 'content-type: application/json' \
+  -d '{"source":"codex-session","transcript":"Decision: keep commits approval gated"}'
+```
+
+Commits are approval-gated:
+
+```sh
+curl -s http://127.0.0.1:8765/orgs/personal/projects/aifund/commit \
+  -H 'content-type: application/json' \
+  -d '{"approval":true,"actor":"lxjuly"}'
+```
+
+The example local registry at `.chronelle/config.example.json` registers:
+
+- `personal/chronelle`
+- `personal/aifund`

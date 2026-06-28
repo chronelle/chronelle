@@ -11,6 +11,85 @@ This plan is a projection over Chronelle project memory.
 
 ## Done
 
+### Define local org and project registry
+
+- id: define-local-org-project-registry
+- status: done
+- why: Chronelle's first-customer goal is to speed up development of other
+  projects, which requires addressing AIFund and Chronelle as distinct projects
+  under a local organization.
+- related memory:
+  - goal: speed-up-other-project-development
+  - decision: mvp-agent-service-vs-cli-tool
+  - decision: local-agent-implementation-plan
+  - transition: revise-current-plan-with-local-agent-tasks
+
+### Add local HTTP service skeleton
+
+- id: add-local-http-service-skeleton
+- status: done
+- why: Plan B requires `chronelle-agent run` as a standing local service.
+- related memory:
+  - decision: local-agent-implementation-plan
+  - goal: speed-up-other-project-development
+
+### Implement context endpoint
+
+- id: implement-context-endpoint
+- status: done
+- why: AIFund work sessions need restart context at the beginning of work.
+- related memory:
+  - decision: local-agent-implementation-plan
+  - ontology: checkpoint
+
+### Implement transcript ingest and proposal staging
+
+- id: implement-transcript-ingest-proposal-staging
+- status: done
+- why: The agent must automatically maintain pending organizational memory
+  updates while the user works on AIFund.
+- related memory:
+  - decision: local-agent-implementation-plan
+  - decision: mvp-agent-service-vs-cli-tool
+
+### Implement diff and approval-gated commit endpoints
+
+- id: implement-diff-and-approval-gated-commit
+- status: done
+- why: Chronelle's trust boundary is review before durable writes to `.memory`.
+- related memory:
+  - decision: local-agent-implementation-plan
+  - decision: project-owned-memory-directory
+
+### Dogfood local agent on AIFund
+
+- id: dogfood-local-agent-on-aifund
+- status: done
+- why: Chronelle's first customer is the user's own AIFund and Chronelle work.
+- related memory:
+  - goal: speed-up-other-project-development
+  - decision: local-agent-implementation-plan
+
+### Define automatic observation source
+
+- id: define-automatic-observation-source
+- status: done
+- why: The agent cannot automatically update memory unless it knows where
+  session evidence enters the system.
+- related memory:
+  - decision: local-agent-implementation-plan
+  - ontology: episode-transition
+
+### Evaluate MCP after HTTP workflow stabilizes
+
+- id: evaluate-mcp-after-http-workflow-stabilizes
+- status: done
+- why: MCP may become the cleaner integration path for Codex, Claude Code, and
+  ChatGPT-style clients, but should not precede the core memory loop.
+- related memory:
+  - decision: local-agent-implementation-plan
+  - decision: defer-mcp-until-http-dogfood-stabilizes
+
 ### Refactor proposition primitives
 
 - id: refactor-proposition-primitives
@@ -28,104 +107,21 @@ This plan is a projection over Chronelle project memory.
 
 ## Active
 
-### Define local org and project registry
+### Run full AIFund dogfood session
 
-- id: define-local-org-project-registry
+- id: run-full-aifund-dogfood-session
 - status: active
-- why: Chronelle's first-customer goal is to speed up development of other
-  projects, which requires addressing AIFund and Chronelle as distinct projects
-  under a local organization.
-- next action: Add a config module and file shape for local org/project
-  registration, including repo path, `.memory` path, default actor, and approval
-  policy.
+- why: The service now exists, but Chronelle still needs a real AIFund work
+  session to validate whether the loop speeds up development.
+- next action: Start `chronelle-agent run`, request AIFund context, complete a
+  small AIFund task, ingest the session transcript, review the diff, and commit
+  approved `.memory` updates.
 - related memory:
   - goal: speed-up-other-project-development
-  - decision: mvp-agent-service-vs-cli-tool
   - decision: local-agent-implementation-plan
-  - episode: define-mvp-agent-service-strategy
+  - decision: defer-mcp-until-http-dogfood-stabilizes
 
 ## Proposed
-
-### Add local HTTP service skeleton
-
-- id: add-local-http-service-skeleton
-- status: proposed
-- why: Plan B requires `chronelle-agent run` as a standing local service.
-- next action: Add `chronelle.server` and a `chronelle-agent run` entrypoint
-  that starts a localhost HTTP server with health and version endpoints.
-- related memory:
-  - decision: local-agent-implementation-plan
-  - goal: speed-up-other-project-development
-
-### Implement context endpoint
-
-- id: implement-context-endpoint
-- status: proposed
-- why: AIFund work sessions need restart context at the beginning of work.
-- next action: Expose `GET /orgs/{org}/projects/{project}/context` over the
-  existing `Chronelle.get_context()` projection.
-- related memory:
-  - decision: local-agent-implementation-plan
-  - ontology: checkpoint
-
-### Implement transcript ingest and proposal staging
-
-- id: implement-transcript-ingest-proposal-staging
-- status: proposed
-- why: The agent must automatically maintain pending organizational memory
-  updates while the user works on AIFund.
-- next action: Expose `POST /orgs/{org}/projects/{project}/ingest` that accepts
-  transcript/session text and stages proposed memory updates without persistence.
-- related memory:
-  - decision: local-agent-implementation-plan
-  - decision: mvp-agent-service-vs-cli-tool
-
-### Implement diff and approval-gated commit endpoints
-
-- id: implement-diff-and-approval-gated-commit
-- status: proposed
-- why: Chronelle's trust boundary is review before durable writes to `.memory`.
-- next action: Expose diff retrieval and commit endpoints, requiring explicit
-  approval for commit.
-- related memory:
-  - decision: local-agent-implementation-plan
-  - decision: project-owned-memory-directory
-
-### Dogfood local agent on AIFund
-
-- id: dogfood-local-agent-on-aifund
-- status: proposed
-- why: Chronelle's first customer is the user's own AIFund and Chronelle work.
-- next action: Register AIFund as a local project, run the local agent during an
-  AIFund work session, and verify it produces useful context and proposed memory
-  updates.
-- related memory:
-  - goal: speed-up-other-project-development
-  - decision: local-agent-implementation-plan
-
-### Define automatic observation source
-
-- id: define-automatic-observation-source
-- status: proposed
-- why: The agent cannot automatically update memory unless it knows where
-  session evidence enters the system.
-- next action: Decide the first observation source: explicit transcript POST,
-  watched transcript directory, Codex handoff file, or editor/terminal
-  integration.
-- related memory:
-  - decision: local-agent-implementation-plan
-  - ontology: episode-transition
-
-### Evaluate MCP after HTTP workflow stabilizes
-
-- id: evaluate-mcp-after-http-workflow-stabilizes
-- status: proposed
-- why: MCP may become the cleaner integration path for Codex, Claude Code, and
-  ChatGPT-style clients, but should not precede the core memory loop.
-- next action: After the local HTTP workflow works for AIFund, decide whether to
-  add a workspace-local MCP server.
-- related memory:
-  - decision: local-agent-implementation-plan
 
 ### Define project memory templates
 

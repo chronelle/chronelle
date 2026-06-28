@@ -78,9 +78,9 @@ class Chronelle:
     is the first operation that writes durable memory.
     """
 
-    def __init__(self, root: str | Path = ".") -> None:
+    def __init__(self, root: str | Path = ".", memory_root: str | Path | None = None) -> None:
         self.root = Path(root).resolve()
-        self.memory_root = self.root / MEMORY_DIR
+        self.memory_root = Path(memory_root).resolve() if memory_root else self.root / MEMORY_DIR
         self._proposal = Proposal()
 
     def get_context(
