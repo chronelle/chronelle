@@ -309,18 +309,22 @@ def _new_change(primitive_type: str, title: str, memory_root: Path) -> ProposedC
     directory = SUPPORTED_TYPES[primitive_type]
     path = _available_path(memory_root / directory / f"{slug}.md")
     status = _default_status(primitive_type)
-    today = datetime.now(timezone.utc).date().isoformat()
+    created_at = _utc_timestamp()
     content = (
         "---\n"
         f"id: {path.stem}\n"
         f"type: {primitive_type}\n"
         f"status: {status}\n"
-        f"created: {today}\n"
+        f"created: {created_at}\n"
         "---\n\n"
         f"# {_title_case(title)}\n\n"
         "Source: proposed from transcript.\n"
     )
     return ProposedChange(kind=f"create {primitive_type}", path=path, content=content, title=title)
+
+
+def _utc_timestamp() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def _default_status(primitive_type: str) -> str:

@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -62,6 +63,7 @@ class ChronelleApiTests(unittest.TestCase):
             self.assertIn("+++ b/.memory/decisions/use-project-owned-memory-directories.md", diff)
             self.assertIn("+status: proposed", diff)
             self.assertIn("+status: unsettled", diff)
+            self.assertRegex(diff, r"\+created: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 
             written = chronelle.commit()
 
@@ -75,6 +77,10 @@ class ChronelleApiTests(unittest.TestCase):
             )
             self.assertEqual(chronelle.diff(), "")
             self.assertTrue((root / written[0]).exists())
+            content = (root / written[0]).read_text(encoding="utf-8")
+            self.assertIsNotNone(
+                re.search(r"^created: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$", content, re.MULTILINE)
+            )
 
 
 if __name__ == "__main__":
