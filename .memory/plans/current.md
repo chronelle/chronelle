@@ -11,6 +11,17 @@ This plan is a projection over Chronelle project memory.
 
 ## Done
 
+### Run full AIFund dogfood session
+
+- id: run-full-aifund-dogfood-session
+- status: done
+- why: The local HTTP service needed a real AIFund work session to validate
+  whether the loop speeds up development.
+- related memory:
+  - goal: speed-up-other-project-development
+  - decision: local-agent-implementation-plan
+  - decision: defer-mcp-until-http-dogfood-stabilizes
+
 ### Define local org and project registry
 
 - id: define-local-org-project-registry
@@ -107,21 +118,53 @@ This plan is a projection over Chronelle project memory.
 
 ## Active
 
-### Run full AIFund dogfood session
+### Implement thread checkpoint memory
 
-- id: run-full-aifund-dogfood-session
+- id: implement-thread-checkpoint-memory
 - status: active
-- why: The service now exists, but Chronelle still needs a real AIFund work
-  session to validate whether the loop speeds up development.
-- next action: Start `chronelle-agent run`, request AIFund context, complete a
-  small AIFund task, ingest the session transcript, review the diff, and commit
-  approved `.memory` updates.
+- why: Chronelle's next goal is to optimize memory structure for long-horizon
+  tasks, and the accepted structure is thread-based memory with per-thread
+  checkpoints.
+- next action: Define the `.memory/threads/` file shapes, create initial threads
+  for local-agent-service and primitive-simplification, and teach context
+  projection to surface active thread context.
 - related memory:
-  - goal: speed-up-other-project-development
-  - decision: local-agent-implementation-plan
-  - decision: defer-mcp-until-http-dogfood-stabilizes
+  - decision: thread-checkpoint-memory-for-long-horizon-tasks
+  - episode: choose-long-horizon-memory-structure
 
 ## Proposed
+
+### Define thread memory file shapes
+
+- id: define-thread-memory-file-shapes
+- status: proposed
+- why: Thread memory needs repeatable conventions before implementation.
+- next action: Specify `index.md`, `checkpoint.md`, `plan.md`, and
+  `open-loops.md` fields and linking rules.
+- related memory:
+  - decision: thread-checkpoint-memory-for-long-horizon-tasks
+
+### Create initial Chronelle threads
+
+- id: create-initial-chronelle-threads
+- status: proposed
+- why: Chronelle needs live examples to dogfood thread memory.
+- next action: Create `local-agent-service` and `primitive-simplification`
+  threads under `.memory/threads/`.
+- related memory:
+  - decision: thread-checkpoint-memory-for-long-horizon-tasks
+  - decision: commitment-as-fundamental-primitive
+
+### Project active thread context
+
+- id: project-active-thread-context
+- status: proposed
+- why: Long-horizon task memory only helps if `get_context()` can surface the
+  relevant thread checkpoint and open loops.
+- next action: Extend the Chronelle context projection to include active threads.
+- related memory:
+  - decision: thread-checkpoint-memory-for-long-horizon-tasks
+  - decision: local-agent-implementation-plan
 
 ### Define project memory templates
 
