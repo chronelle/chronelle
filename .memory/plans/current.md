@@ -118,10 +118,26 @@ This plan is a projection over Chronelle project memory.
 
 ## Active
 
+### Build resume eval harness
+
+- id: build-resume-eval-harness
+- status: active
+- why: Chronelle needs metrics before treating thread/checkpoint memory as a
+  successful long-horizon structure.
+- next action: Add deterministic resume eval fixtures and a harness that scores
+  projected context for required facts, next-action accuracy, open-loop recall,
+  decision recall, noise, and size.
+- related memory:
+  - decision: thread-checkpoint-memory-for-long-horizon-tasks
+  - decision: evaluate-memory-structure-with-resume-harness
+  - episode: define-memory-structure-evals
+
+## Proposed
+
 ### Implement thread checkpoint memory
 
 - id: implement-thread-checkpoint-memory
-- status: active
+- status: proposed
 - why: Chronelle's next goal is to optimize memory structure for long-horizon
   tasks, and the accepted structure is thread-based memory with per-thread
   checkpoints.
@@ -132,7 +148,37 @@ This plan is a projection over Chronelle project memory.
   - decision: thread-checkpoint-memory-for-long-horizon-tasks
   - episode: choose-long-horizon-memory-structure
 
-## Proposed
+### Define resume eval metrics
+
+- id: define-resume-eval-metrics
+- status: proposed
+- why: The harness needs explicit metrics before implementation.
+- next action: Codify resume precision, noise, next-action accuracy, open-loop
+  recall, decision recall, and context size in a small scoring module.
+- related memory:
+  - decision: evaluate-memory-structure-with-resume-harness
+
+### Add resume eval fixtures
+
+- id: add-resume-eval-fixtures
+- status: proposed
+- why: Chronelle needs deterministic cases before model-judged evaluations.
+- next action: Add fixture memory cases for local-agent-service and
+  primitive-simplification with expected resume facts.
+- related memory:
+  - decision: evaluate-memory-structure-with-resume-harness
+  - decision: thread-checkpoint-memory-for-long-horizon-tasks
+
+### Run baseline eval before thread memory
+
+- id: run-baseline-eval-before-thread-memory
+- status: proposed
+- why: Chronelle needs a baseline to know whether thread memory improves
+  long-horizon context.
+- next action: Score the current context projection before adding active thread
+  projection.
+- related memory:
+  - decision: evaluate-memory-structure-with-resume-harness
 
 ### Define thread memory file shapes
 
